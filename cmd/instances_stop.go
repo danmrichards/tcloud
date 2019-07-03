@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	// instancesStopCommand represents the "instances stop" command
-	instancesStopCommand = &cobra.Command{
+	// instancesStopCmd represents the "instances stop" command
+	instancesStopCmd = &cobra.Command{
 		Use:   "stop",
 		Short: "Stop a Cloud Virtual Machine instance.",
 		Example: `# Stop an instance
@@ -21,7 +21,7 @@ tcloud instances stop ins-abcdefgh`,
 )
 
 func init() {
-	instancesCommand.AddCommand(instancesStopCommand)
+	instancesCmd.AddCommand(instancesStopCmd)
 }
 
 func stopInstance(cmd *cobra.Command, args []string) {

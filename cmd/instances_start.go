@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	// instancesStartCommand represents the "instances start" command
-	instancesStartCommand = &cobra.Command{
+	// instancesStartCmd represents the "instances start" command
+	instancesStartCmd = &cobra.Command{
 		Use:   "start",
 		Short: "Start a Cloud Virtual Machine instance.",
 		Example: `# Start an instance
@@ -21,7 +21,7 @@ tcloud instances start ins-abcdefgh`,
 )
 
 func init() {
-	instancesCommand.AddCommand(instancesStartCommand)
+	instancesCmd.AddCommand(instancesStartCmd)
 }
 
 func startInstance(cmd *cobra.Command, args []string) {

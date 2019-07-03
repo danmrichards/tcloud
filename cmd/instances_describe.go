@@ -14,8 +14,8 @@ import (
 )
 
 var (
-	// instancesDescribeCommand represents the "instances describe" command
-	instancesDescribeCommand = &cobra.Command{
+	// instancesDescribeCmd represents the "instances describe" command
+	instancesDescribeCmd = &cobra.Command{
 		Use:   "describe",
 		Short: "Displays all data associated with a Cloud Virtual Machine instance.",
 		Example: `# Describe an instance
@@ -26,7 +26,7 @@ tcloud instances describe ins-abcdefgh`,
 )
 
 func init() {
-	instancesCommand.AddCommand(instancesDescribeCommand)
+	instancesCmd.AddCommand(instancesDescribeCmd)
 }
 
 func describeInstance(cmd *cobra.Command, args []string) {

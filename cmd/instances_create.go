@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	// instancesCreateCommand represents the "instances create" command
-	instancesCreateCommand = &cobra.Command{
+	// instancesCreateCmd represents the "instances create" command
+	instancesCreateCmd = &cobra.Command{
 		Use:   "create",
 		Short: "Creates a new Cloud Virtual Machine instance.",
 		Example: `# Create an instance
@@ -27,23 +27,23 @@ tcloud instances describe create ins-abcdefgh --image img-abcde`,
 )
 
 func init() {
-	instancesCommand.AddCommand(instancesCreateCommand)
+	instancesCmd.AddCommand(instancesCreateCmd)
 
-	instancesCreateCommand.Flags().StringVar(
+	instancesCreateCmd.Flags().StringVar(
 		&imageID,
 		"image",
 		"",
 		"ID of the image used for the created Compute Virtual Machine.",
 	)
-	instancesCreateCommand.MarkFlagRequired("image")
+	instancesCreateCmd.MarkFlagRequired("image")
 
-	instancesCreateCommand.Flags().StringVar(
+	instancesCreateCmd.Flags().StringVar(
 		&zone,
 		"zone",
 		"",
-		"Availability zone in which the Compute Virtual Machine will be created. See https://intl.cloud.tencent.com/document/product/213/9452#zone.",
+		"Availability zone in which the Compute Virtual Machine will be created. See: tcloud zones list.",
 	)
-	instancesCreateCommand.MarkFlagRequired("zone")
+	instancesCreateCmd.MarkFlagRequired("zone")
 }
 
 func createInstance(cmd *cobra.Command, args []string) {

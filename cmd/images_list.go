@@ -37,7 +37,7 @@ tcloud images list --offset 20 --limit 10
 )
 
 func init() {
-	imagesCommand.AddCommand(imagesListCmd)
+	imagesCmd.AddCommand(imagesListCmd)
 
 	imagesListCmd.Flags().Uint64Var(
 		&imagesOffset,

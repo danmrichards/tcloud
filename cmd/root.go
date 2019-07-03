@@ -59,7 +59,7 @@ func init() {
 		&apiRegion,
 		"region",
 		regions.Frankfurt,
-		"The Tencent Cloud API region. See: https://intl.cloud.tencent.com/document/product/213/15692#Region-List",
+		"The Tencent Cloud API region. See: tcloud regions list.",
 	)
 
 	rootCmd.PersistentFlags().StringVar(

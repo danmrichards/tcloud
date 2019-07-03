@@ -19,8 +19,8 @@ var (
 	// instancesLimit is the number of images to return per "page".
 	instancesLimit int64
 
-	// instancesListCommand represents the "instances list" command
-	instancesListCommand = &cobra.Command{
+	// instancesListCmd represents the "instances list" command
+	instancesListCmd = &cobra.Command{
 		Use:   "list",
 		Short: "List Cloud Virtual Machine instances.",
 		Example: `# List all instances
@@ -38,16 +38,16 @@ tcloud instances list --offset 20 --limit 10
 )
 
 func init() {
-	instancesCommand.AddCommand(instancesListCommand)
+	instancesCmd.AddCommand(instancesListCmd)
 
-	instancesListCommand.Flags().Int64Var(
+	instancesListCmd.Flags().Int64Var(
 		&instancesOffset,
 		"offset",
 		0,
 		"The pagination offset. Example: If there are 100 items, an offset of 10 and a limit of 20 will return items 11 - 31.",
 	)
 
-	instancesListCommand.Flags().Int64Var(
+	instancesListCmd.Flags().Int64Var(
 		&instancesLimit,
 		"limit",
 		0,

@@ -110,3 +110,78 @@ func (c *CVMClient) RunInstances(req *cvm.RunInstancesRequest) (*cvm.RunInstance
 
 	return res, nil
 }
+
+// StartInstances is used to launch one or more instances.
+//
+// Only an instance with a status of `STOPPED` can do this.
+//
+// When the interface call succeeds, the instance will enter the `STARTING`
+// state; when the instance is successfully launched, the instance will enter
+// the `RUNNING` state.
+//
+// Support for batch operations. The maximum number of requests for a batch
+// instance is 100.
+func (c *CVMClient) StartInstances(req *cvm.StartInstancesRequest) (*cvm.StartInstancesResponse, error) {
+	res, err := c.client.StartInstances(req)
+	if err != nil {
+		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
+			return nil, fmt.Errorf("api error: %s", terr)
+		}
+		return nil, err
+	}
+
+	return res, nil
+}
+
+// StopInstances is used to close one or more instances.
+//
+// Only an instance with a state of `RUNNING` can do this.
+//
+// When the interface call succeeds, the instance will enter the `STOPPING`
+// state; when the instance is closed successfully, the instance will enter the
+// `STOPPED` state.
+//
+// Support for forced shutdown. The effect of a forced shutdown is equivalent to
+// turning off the power switch of a physical computer. Forcible shutdown may
+// result in data loss or file system corruption, please use only when the
+// server is not properly shut down.
+//
+// Support for batch operations. The maximum number of requests for a batch
+// instance is 100.
+func (c *CVMClient) StopInstances(req *cvm.StopInstancesRequest) (*cvm.StopInstancesResponse, error) {
+	res, err := c.client.StopInstances(req)
+	if err != nil {
+		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
+			return nil, fmt.Errorf("api error: %s", terr)
+		}
+		return nil, err
+	}
+
+	return res, nil
+}
+
+// DescribeRegions is used to query geographical information.
+func (c *CVMClient) DescribeRegions(req *cvm.DescribeRegionsRequest) (*cvm.DescribeRegionsResponse, error) {
+	res, err := c.client.DescribeRegions(req)
+	if err != nil {
+		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
+			return nil, fmt.Errorf("api error: %s", terr)
+		}
+		return nil, err
+	}
+
+	return res, nil
+}
+
+// DescribeZones is used to query the available area information.
+func (c *CVMClient) DescribeZones(req *cvm.DescribeZonesRequest) (*cvm.DescribeZonesResponse, error) {
+	res, err := c.client.DescribeZones(req)
+	if err != nil {
+		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
+			return nil, fmt.Errorf("api error: %s", terr)
+		}
+		return nil, err
+	}
+
+	return res, nil
+}

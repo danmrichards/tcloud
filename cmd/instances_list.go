@@ -23,8 +23,17 @@ var (
 	instancesListCommand = &cobra.Command{
 		Use:   "list",
 		Short: "List Cloud Virtual Machine instances.",
-		Args:  cobra.NoArgs,
-		Run:   listInstances,
+		Example: `# List all instances
+tcloud instances list
+
+# Filter by region
+tcloud instances list --region eu-frankfurt
+
+# Limit results
+tcloud instances list --offset 20 --limit 10
+`,
+		Args: cobra.NoArgs,
+		Run:  listInstances,
 	}
 )
 
@@ -83,7 +92,7 @@ func listInstances(cmd *cobra.Command, _ []string) {
 
 	res, err := cvmClient.DescribeInstances(req)
 	if err != nil {
-		cmd.PrintErr("Could not get images list: ", err)
+		cmd.PrintErr("Could not get instances list: ", err)
 		return
 	}
 

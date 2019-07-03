@@ -32,7 +32,9 @@ func (a *APIClient) CVM(region string) (*CVMClient, error) {
 //
 // You can query the details of the specified image by specifying the image
 // ID, or you can query the details of the image that meets the filter by
-// setting a filter. Specify offset (Offset) and Limit (Limit) to select a part
+// setting a filter.
+//
+// Specify offset (Offset) and Limit (Limit) to select a part
 // of the result. By default, the first 20 mirror images that satisfy the
 // condition are returned.
 //
@@ -60,6 +62,45 @@ func (c *CVMClient) DescribeImages(req *cvm.DescribeImagesRequest) (*cvm.Describ
 // See: https://intl.cloud.tencent.com/document/product/213/15728
 func (c *CVMClient) DescribeInstances(req *cvm.DescribeInstancesRequest) (*cvm.DescribeInstancesResponse, error) {
 	res, err := c.client.DescribeInstances(req)
+	if err != nil {
+		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
+			return nil, fmt.Errorf("api error: %s", terr)
+		}
+		return nil, err
+	}
+
+	return res, nil
+}
+
+// RunInstances is used to create an instance of one or more specified
+// configurations.
+//
+// After the instance is created successfully, it will automatically start up,
+// and [Instance Status] (/document/api/213/9452#instance_state) becomes
+// "Running".
+//
+// The purchase of the pre-paid instance will pre-deduct the amount required for
+// the purchase of this instance. After the hourly payment, the purchase will
+// pre-freeze the amount required for the purchase of the instance within one
+// hour. Please ensure that the account balance is sufficient before calling
+// this interface.
+//
+// The number of instances allowed to be purchased on this interface follows the
+// CVM instance purchase limit, the created instance and the instance share
+// quota created by the official website portal.
+//
+// This interface is an asynchronous interface. When the creation request is
+// successfully delivered, it will return an instance `ID` list. At this time,
+// the instance is created and immediately completed. During this time, the
+// status of the instance will be in the "preparation". You can check the status
+// of the corresponding instance by calling the DescribeInstances interface to
+// determine the creation. There is no ultimate success. If the status of the
+// instance changes from "Ready" to "Running", the creation is successful.
+//
+// See: https://cloud.tencent.com/document/product/213/2664
+// See: https://cloud.tencent.com/document/api/213/15728
+func (c *CVMClient) RunInstances(req *cvm.RunInstancesRequest) (*cvm.RunInstancesResponse, error) {
+	res, err := c.client.RunInstances(req)
 	if err != nil {
 		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
 			return nil, fmt.Errorf("api error: %s", terr)

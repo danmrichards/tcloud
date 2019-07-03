@@ -22,8 +22,17 @@ var (
 	imagesListCmd = &cobra.Command{
 		Use:   "list",
 		Short: "List available images that can be used with Cloud Virtual Machines.",
-		Args:  cobra.NoArgs,
-		Run:   listImages,
+		Example: `# List all images
+tcloud images list
+
+# Filter by region
+tcloud images list --region eu-frankfurt
+
+# Limit results
+tcloud images list --offset 20 --limit 10
+`,
+		Args: cobra.NoArgs,
+		Run:  listImages,
 	}
 )
 

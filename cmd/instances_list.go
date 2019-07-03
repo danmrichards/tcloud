@@ -56,6 +56,8 @@ func init() {
 }
 
 func listInstances(cmd *cobra.Command, _ []string) {
+	cmd.Println()
+
 	// Note: Many comment blocks in here have been translated from Chinese docs.
 
 	apiClient := tencent.NewAPIClient(
@@ -95,8 +97,6 @@ func listInstances(cmd *cobra.Command, _ []string) {
 		cmd.PrintErr("Could not get instances list: ", err)
 		return
 	}
-
-	cmd.Println()
 
 	w := tabwriter.NewWriter(os.Stdout, 0, 1, 3, ' ', 0)
 	fmt.Fprintln(w, "ID\tName\tStatus\tAvailability Zone\tModel\tIP")

@@ -13,7 +13,7 @@ var (
 		Use:   "create",
 		Short: "Creates a new Cloud Virtual Machine instance.",
 		Example: `# Create an instance
-tcloud instances describe create foobar --image img-abcde`,
+tcloud instances describe create ins-abcdefgh --image img-abcde`,
 		Args: cobra.ExactArgs(1),
 		Run:  createInstance,
 	}
@@ -47,6 +47,8 @@ func init() {
 }
 
 func createInstance(cmd *cobra.Command, args []string) {
+	cmd.Println()
+
 	// Note: Many comment blocks in here have been translated from Chinese docs.
 
 	apiClient := tencent.NewAPIClient(
@@ -61,6 +63,13 @@ func createInstance(cmd *cobra.Command, args []string) {
 		return
 	}
 
+	// Instantiate a request object, according to the called interface and the
+	// actual situation, you can further set the request parameters. You can
+	// directly query the SDK source to determine which properties of
+	// RunInstancesRequest can be set. The attribute may be a primitive type or
+	// it may reference another data structure. It is recommended to use the IDE
+	// for development, which can be easily accessed to view the documentation
+	// of each interface and data structure.
 	req := cvm.NewRunInstancesRequest()
 
 	// Location of the instance. This parameter is used to specify the
@@ -92,12 +101,11 @@ func createInstance(cmd *cobra.Command, args []string) {
 
 	res, err := cvmClient.RunInstances(req)
 	if err != nil {
-		cmd.PrintErr("Could not get images list: ", err)
+		cmd.PrintErr("Could not create instance: ", err)
 		return
 	}
 	instanceID := *res.Response.InstanceIdSet[0]
 
-	cmd.Println()
 	cmd.Printf("Instance creating with ID %q\n", instanceID)
 	cmd.Println(`Check status with "tcloud instances describe ` + instanceID + `"`)
 }

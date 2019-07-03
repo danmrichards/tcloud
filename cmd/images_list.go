@@ -5,7 +5,7 @@ import (
 	"os"
 	"text/tabwriter"
 
-	"github.com/danmrichards/tencent-cloud-cli/internal/tencent"
+	"github.com/danmrichards/tcloud/internal/tencent"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	cvm "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/cvm/v20170312"

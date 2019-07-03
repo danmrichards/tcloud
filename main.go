@@ -1,7 +1,7 @@
 package main
 
-import "github.com/danmrichards/tencent-cloud-cli/cmd"
+import "github.com/danmrichards/tcloud/cmd"
 
 func main() {
-  cmd.Execute()
+	cmd.Execute()
 }

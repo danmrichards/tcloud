@@ -1,4 +1,4 @@
-module github.com/danmrichards/tencent-cloud-cli
+module github.com/danmrichards/tcloud
 
 go 1.12
 

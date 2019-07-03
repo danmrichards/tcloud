@@ -6,9 +6,9 @@ With this CLI you are able to create, update and delete Cloud Virtual Machine
 (CVM) instances in Tencent Cloud.
 
 ## Installation
-To build the CLI from source you need to have `make` installed on your machine.
-You can then build the binaries by running this from from the root directory of
-this repository:
+To build the CLI from source you need to have `make` and `go` installed on your
+machine. You can then build the binaries by running this from from the root
+directory of this repository:
 ```bash
 $ make
 ```

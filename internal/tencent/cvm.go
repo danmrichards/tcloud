@@ -48,3 +48,24 @@ func (c *CVMClient) DescribeImages(req *cvm.DescribeImagesRequest) (*cvm.Describ
 
 	return res, nil
 }
+
+// DescribeInstances is used to query the details of one or more instances.
+//
+// You can query the details of an instance based on information such as
+// instance `ID`, instance name, or instance billing mode. See filter `Filter`
+// for details on filtering information. If the parameter is empty, return an
+// instance of the current user (the number specified by `Limit`, default is
+// 20).
+//
+// See: https://intl.cloud.tencent.com/document/product/213/15728
+func (c *CVMClient) DescribeInstances(req *cvm.DescribeInstancesRequest) (*cvm.DescribeInstancesResponse, error) {
+	res, err := c.client.DescribeInstances(req)
+	if err != nil {
+		if terr, ok := err.(*tcerr.TencentCloudSDKError); ok {
+			return nil, fmt.Errorf("api error: %s", terr)
+		}
+		return nil, err
+	}
+
+	return res, nil
+}

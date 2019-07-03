@@ -1,0 +1,12 @@
+[clog]
+repository = "https://github.com/multiplay/multiplay-go"
+subtitle = "Release Notes"
+
+[sections]
+"Refactors" = ["refactor"]
+"Chores" = ["chore"]
+"Continuous Integration" = ["ci"]
+"Improvements" = ["improvement"]
+"Features" = ["feat", "feature"]
+"Legacy" = ["legacy"]
+

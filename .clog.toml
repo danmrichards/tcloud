@@ -1,5 +1,5 @@
 [clog]
-repository = "https://github.com/multiplay/multiplay-go"
+repository = "github.com/danmrichards/tcloud"
 subtitle = "Release Notes"
 
 [sections]
